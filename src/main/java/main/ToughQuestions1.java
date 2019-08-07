@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 
 import java.io.InputStreamReader;
+
 public class ToughQuestions1 {
     public static void main(String[] args) throws IOException {
        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,8 +28,8 @@ public class ToughQuestions1 {
        System.out.println("Enter the balance");
        bal = Integer.parseInt(br.readLine());
        Account a = new Account(acc_no,acc_name,type,bal);
-       do
-       {
+       
+       do{
        System.out.println("1. Credit Account \n2. Debit Account \n3. Display Account Details");
        System.out.println("Enter your choice");
        choice = Integer.parseInt(br.readLine());
@@ -36,11 +37,18 @@ public class ToughQuestions1 {
        {
            case 1: System.out.println("Enter the amount to be credited");
            credit = Integer.parseInt(br.readLine());
-           a.credit(credit);
+           bal=a.credit(credit);
+           //System.out.println(bal);
            break;
            case 2: System.out.println("Enter the amount to be debited");
            debit = Integer.parseInt(br.readLine());
-           a.debit(debit);
+           //System.out.println(bal);
+           if((bal-debit)<0) {
+        	   System.out.println("Insufficient Balance");
+           }else {
+        	   bal=a.debit(debit);
+           }
+           //System.out.println(bal);
            break;
            case 3:a.display();
            break;
@@ -75,6 +83,6 @@ class Account {
         System.out.println();
     }
     int debit(Integer debit) {
-         return bal = bal - debit;
+    	return bal = bal - debit;
     }
 }
